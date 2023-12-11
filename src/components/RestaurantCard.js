@@ -1,11 +1,6 @@
 import { CDN_URL } from "../utils/constants";
 
-const RestrauntCard = ({
-  cloudinaryImageId,
-  name,
-  cuisines,
-  avgRating
-}) => {
+const RestrauntCard = ({ cloudinaryImageId, name, cuisines, avgRating }) => {
   // const {restraunt} = props;
   // const  = restraunt;
   return (
@@ -15,7 +10,7 @@ const RestrauntCard = ({
       <h3>{cuisines.join(", ")}</h3>
       <h3>{avgRating} Stars</h3>
     </div>
-  )
-}
+  );
+};
 
 export default RestrauntCard;
