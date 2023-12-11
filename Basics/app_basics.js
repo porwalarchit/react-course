@@ -1,21 +1,4 @@
-/*
- * PARCEL?
- * HMR - Hot Module Reload - Used by Parcel to reload the page, on any change in the code.
- * Parcel used File Watcher Algorithm (written in C++).
- * BUNDLING
- * MINIFY
- * Cleaning our code
- * Dev and Production Builds
- * Super fast Build Algorithm
- * Image Optimization
- * Caching while development
- * Compression
- * Compatible with older version of browsers.
- * HTTPS on Dev
- * Port Number
- * Consistent Hashing Algorithm
- * Zero Config
- */
+
 
 import React from "react";
 import ReactDOM from "react-dom/client";
@@ -42,12 +25,6 @@ const Title = () => {
     return <h1>React Course</h1>
 }
 
-// React Component
-// 1- Class based Component (Old Way)
-
-// 2- Functional Component (Latest Way)
-// Name of component starts with Capital Letter (ALWAYS)
-// Composing Components
 const HeaderComponent = () => {
   return (
     <div>
