@@ -15,8 +15,8 @@
  * Consistent Hashing Algorithm
  * Zero Config
 
-- JSX (Java Script XML) => React.createElement => Object => HTML(DOM)
-- Babel understand JSX, and converts it into React.createElement()
+### JSX (Java Script XML) => React.createElement => Object => HTML(DOM)
+### Babel understand JSX, and converts it into React.createElement()
 
 ### React.createElement => Object => HTML(DOM)
 
