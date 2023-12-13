@@ -10,8 +10,13 @@
   width: 15%;
 }
 
+.filter{
+  display: flex;
+  margin: 10px;
+}
+
 .filter-btn {
-  margin: 12px;
+  margin-left: 15px;
   cursor: pointer;
 }
 
