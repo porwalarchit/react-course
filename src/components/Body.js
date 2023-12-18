@@ -19,11 +19,9 @@ const Body = () => {
 
     const jsonData = await data.json();
 
+    // console.log(jsonData?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+    //   ?.restaurants);
     // Optional Chaining
-    console.log(
-      jsonData?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants
-    );
     setRestaurantData(
       jsonData?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants
@@ -35,10 +33,11 @@ const Body = () => {
   };
 
   // Conditional Rendering
-  // if(restaurantData.length === 0){
+  // if (restaurantData.length === 0) {
   //   return <Shimmer />;
   // }
 
+  // console.log(restaurantData.length);
   return restaurantData.length === 0 ? (
     <Shimmer />
   ) : (
@@ -51,11 +50,6 @@ const Body = () => {
             value={searchText}
             onChange={(e) => {
               setSearchText(e.target.value);
-              const filteredData = restaurantData.filter((res) => 
-                res.info.name.toLowerCase().includes(searchText.toLowerCase())
-              );
-
-              setFilteredRestaurants(filteredData);
             }}
           />
           <button
