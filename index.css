@@ -62,3 +62,11 @@
 .res-menu{
   text-align: center;
 }
+
+ul {
+  list-style-type: none;
+}
+
+Link {
+  text-decoration: none;
+}

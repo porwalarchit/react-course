@@ -3,6 +3,8 @@ import { restaurantsData } from "../utils/mockData";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { SWIGGY_CDN } from "../utils/constants";
+// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Body = () => {
   const [restaurantData, setRestaurantData] = useState([]);
@@ -37,7 +39,6 @@ const Body = () => {
   //   return <Shimmer />;
   // }
 
-  // console.log(restaurantData.length);
   return restaurantData.length === 0 ? (
     <Shimmer />
   ) : (
@@ -79,11 +80,14 @@ const Body = () => {
         </button>
       </div>
       <div className="restaurant-list">
-        {filteredRestaurants.map((restaurant) => {
-          return (
-            <RestaurantCard {...restaurant.info} key={restaurant.info.id} />
-          );
-        })}
+        {filteredRestaurants.map((restaurant) => (
+          <Link
+            key={restaurant.info.id}
+            to={"/restaurantmenu/" + restaurant.info.id}
+          >
+            <RestaurantCard {...restaurant.info} />
+          </Link>
+        ))}
       </div>
     </div>
   );
