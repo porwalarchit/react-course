@@ -21,15 +21,17 @@ const Body = () => {
 
     const jsonData = await data.json();
 
-    // console.log(jsonData?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+    // console.log(jsonData);
+    // console.log(jsonData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
     //   ?.restaurants);
+    
     // Optional Chaining
     setRestaurantData(
-      jsonData?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+      jsonData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants
     );
     setFilteredRestaurants(
-      jsonData?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+      jsonData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants
     );
   };

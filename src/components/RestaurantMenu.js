@@ -36,7 +36,6 @@ const RestaurantMenu = () => {
     resMenuData?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
       ?.card;
 
-  console.log("Menu", itemCards);
   return (
     <div className="res-menu">
       <h1>{name}</h1>
