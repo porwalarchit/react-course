@@ -1,7 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const User = ({name}) => {
-  const [count] = useState(0);
+  const [count, setCount] = useState(0);
+
+  useEffect(()=>{
+    const timer = setInterval(()=>{
+      console.log("User Component");
+    }, 1000);
+
+    // The below return will be called on Component Unmounting,
+    // works similar to componentWillUnmount().
+    return () => {
+      console.log("Component Unmounted");
+      clearInterval(timer);
+    }
+  }, []);
+
   return(
     <div className="user-box">
       <h2>Count: {count}</h2>
