@@ -3,8 +3,8 @@ import { restaurantsData } from "../utils/mockData";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { SWIGGY_CDN } from "../utils/constants";
-// import { Link } from "react-router-dom";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
   const [restaurantData, setRestaurantData] = useState([]);
@@ -24,7 +24,7 @@ const Body = () => {
     // console.log(jsonData);
     // console.log(jsonData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
     //   ?.restaurants);
-    
+
     // Optional Chaining
     setRestaurantData(
       jsonData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
@@ -40,6 +40,11 @@ const Body = () => {
   // if (restaurantData.length === 0) {
   //   return <Shimmer />;
   // }
+
+  const onlineStatus = useOnlineStatus();
+  if (onlineStatus === false) {
+    return <h1>Looks like you're offline!! Check your Internet Connection.</h1>;
+  }
 
   return restaurantData.length === 0 ? (
     <Shimmer />
