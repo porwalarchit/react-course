@@ -46,4 +46,7 @@
 
 - useState() - Superpowerful State Variables in react
 - useEffect()
- 
+
+## Higher Order Component
+- It is a function that takes a component and returns a component. 
+- Higher Order Component are Pure Functions.  

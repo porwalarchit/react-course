@@ -1,4 +1,4 @@
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, { withOpenStatus } from "./RestaurantCard";
 import { restaurantsData } from "../utils/mockData";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
@@ -12,6 +12,8 @@ const Body = () => {
 
   const [searchText, setSearchText] = useState("");
 
+  RestaurantCardOpenStatus = withOpenStatus(RestaurantCard);
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -22,8 +24,7 @@ const Body = () => {
     const jsonData = await data.json();
 
     // console.log(jsonData);
-    // console.log(jsonData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
-    //   ?.restaurants);
+    // console.log(jsonData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
 
     // Optional Chaining
     setRestaurantData(
@@ -93,7 +94,7 @@ const Body = () => {
             key={restaurant.info.id}
             to={"/restaurantmenu/" + restaurant.info.id}
           >
-            <RestaurantCard {...restaurant.info} />
+            {restaurant.info?.availability?.opened ? <RestaurantCardOpenStatus {...restaurant.info} /> : <RestaurantCard {...restaurant.info} />}
           </Link>
         ))}
       </div>
