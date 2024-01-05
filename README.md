@@ -53,3 +53,10 @@
 
 ## Controlled and Uncontrolled Component
 ## Lifting the State Up
+## Props Drilling is Problem
+## Context is the Solution.
+- Lect 11
+- createContext
+- useContext -> For Functional Component
+- Context.Consumer -> For Class Based Component
+- Context.Provider

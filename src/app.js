@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 // import Contact from "./components/Contact";
 import Error from "./components/Error";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+import UserContext from "./utils/UserContext";
 // import RestaurantMenu from "./components/RestaurantMenu";
 // import Grocery from "./components/Grocery";
 
@@ -20,14 +21,25 @@ const RestaurantMenu = lazy(() => import("./components/RestaurantMenu"));
 const About = lazy(() => import("./components/About"));
 const Contact = lazy(() => import("./components/Contact"));
 
-
 const AppLayout = () => {
+  const [userName, setUserName] = useState();
+  // Authentication
+  useEffect(() => {
+    // Make API call for Auth
+    const data = {
+      name: "Archit Porwal",
+    };
+    setUserName(data.name);
+  }, []);
+
   return (
-    <>
-      <Header />
-      <Outlet />
-      {/* <Footer /> */}
-    </>
+    <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
+      <div>
+        <Header />
+        <Outlet />
+        {/* <Footer /> */}
+      </div>
+    </UserContext.Provider>
   );
 };
 
@@ -45,15 +57,18 @@ const appRouter = createBrowserRouter([
         element: (
           <Suspense fallback={<h1>Loading....</h1>}>
             <About />
-          </Suspense>),
+          </Suspense>
+        ),
       },
       {
         path: "/contact",
         element: (
           <Suspense fallback={<h1>Loading...</h1>}>
             <Contact />
-          </Suspense >),
-      }, {
+          </Suspense>
+        ),
+      },
+      {
         path: "/grocery",
         element: (
           <Suspense fallback={<h1>Loading...</h1>}>
@@ -66,7 +81,8 @@ const appRouter = createBrowserRouter([
         element: (
           <Suspense fallback={<h1>Loading...</h1>}>
             <RestaurantMenu />
-          </Suspense>),
+          </Suspense>
+        ),
       },
     ],
     errorElement: <Error />,

@@ -1,18 +1,22 @@
 import RestaurantCard, { withOpenStatus } from "./RestaurantCard";
 import { restaurantsData } from "../utils/mockData";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { SWIGGY_CDN } from "../utils/constants";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserClass from "./UserClass";
+import UserContext from "../utils/UserContext";
 
 const Body = () => {
   const [restaurantData, setRestaurantData] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
 
   const [searchText, setSearchText] = useState("");
-
+  
   RestaurantCardOpenStatus = withOpenStatus(RestaurantCard);
+  
+  const { loggedInUser, setUserName } = useContext(UserContext);
 
   useEffect(() => {
     fetchData();
@@ -23,16 +27,17 @@ const Body = () => {
 
     const jsonData = await data.json();
 
+
     // console.log(jsonData);
     // console.log(jsonData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
 
     // Optional Chaining
     setRestaurantData(
-      jsonData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+      jsonData?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants
     );
     setFilteredRestaurants(
-      jsonData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+      jsonData?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants
     );
   };
@@ -87,6 +92,14 @@ const Body = () => {
             Top Rated Restaurants
           </button>
         </div>
+        <div className="search m-2 ">
+          UserName:
+          <input
+            className="px-4 py-1 bg-slate-100 m-4 border border-solid border-black rounded-lg"
+            value={loggedInUser}
+            onChange={(e)=> setUserName(e.target.value)}
+          />
+        </div>
       </div>
       <div className="flex flex-wrap">
         {filteredRestaurants.map((restaurant) => (
@@ -94,7 +107,11 @@ const Body = () => {
             key={restaurant.info.id}
             to={"/restaurantmenu/" + restaurant.info.id}
           >
-            {restaurant.info?.availability?.opened ? <RestaurantCardOpenStatus {...restaurant.info} /> : <RestaurantCard {...restaurant.info} />}
+            {restaurant.info?.availability?.opened ? (
+              <RestaurantCardOpenStatus {...restaurant.info} />
+            ) : (
+              <RestaurantCard {...restaurant.info} />
+            )}
           </Link>
         ))}
       </div>
