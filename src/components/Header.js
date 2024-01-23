@@ -3,15 +3,20 @@ import { LOGO_URL } from "../utils/constants";
 import { useContext, useState } from "react";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [buttonValue, setButtonValue] = useState("Login");
   const onlineStatus = useOnlineStatus();
 
-  const {loggedInUser} = useContext(UserContext);
+  const { loggedInUser } = useContext(UserContext);
+
+  // Subscribing to the store using a selector.
+  const cartItems = useSelector((store) => store.cart.items);
+  console.log(cartItems);
 
   return (
-    <div className="flex justify-between m-2 shadow-lg sm:bg-gray-100" >
+    <div className="flex justify-between m-2 shadow-lg sm:bg-gray-100">
       <div className="logo-container">
         <img className="w-24" src={LOGO_URL} alt="Logo" />
       </div>
@@ -30,7 +35,11 @@ const Header = () => {
           <li className="px-4">
             <Link to={"/grocery"}>Grocery</Link>
           </li>
-          <button 
+          <li className="px-4 font-bold text-lg">
+            <Link to={"/cart"}>Cart - {cartItems.length} items</Link>
+          </li>
+          <button
+            className="px-3 py-1 font-bold bg-blue-200"
             onClick={() => {
               buttonValue === "Login"
                 ? setButtonValue("Logout")
@@ -39,9 +48,7 @@ const Header = () => {
           >
             {buttonValue}
           </button>
-          <li className="px-4 font-bold">
-            {loggedInUser}
-          </li>
+          <li className="px-4 font-bold">{loggedInUser}</li>
         </ul>
       </div>
     </div>
